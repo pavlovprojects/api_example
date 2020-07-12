@@ -4,6 +4,13 @@ from flask import Blueprint, request, jsonify, session, make_response
 update_blueprint = Blueprint('update', __name__)
 
 
+@update_blueprint.route('/update', methods=['GET'])
+def index():
+    return """
+    /update/add : POST : name (string), surname (string), grade (int)
+    """
+
+
 @update_blueprint.route('/update/add', methods=['POST'])
 def add():
     if session.get("authorized"):

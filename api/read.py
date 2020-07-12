@@ -4,6 +4,14 @@ from flask import Blueprint, jsonify
 read_blueprint = Blueprint('read', __name__)
 
 
+@read_blueprint.route('/read')
+def index():
+    return """
+    <a href="/read/all">/read/all</a> Показть все данные<br>
+    /read/username Показть данные по имени пользователя username<br>
+    """
+
+
 @read_blueprint.route('/read/all')
 def all():
     data = get_sql_result("SELECT * FROM users;")

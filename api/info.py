@@ -6,8 +6,10 @@ info_blueprint = Blueprint('info', __name__)
 
 @info_blueprint.route('/info')
 def index():
-    for el in dir(request):
-        print(el)
+    return """
+    <a href="/info/about">/info/about</a> - Возвращает информацию о запросе<br>
+    <a href="/info/response">/info/response/<status></a> - Возвращает запрос нужного статуса
+    """
 
 
 @info_blueprint.route('/info/about', methods=HTTP_METHODS)

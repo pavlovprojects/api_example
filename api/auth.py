@@ -4,12 +4,19 @@ from flask import Blueprint, request, session, jsonify, make_response
 auth_blueprint = Blueprint('auth', __name__)
 
 
-@auth_blueprint.route('/auth/login', methods=["GET"])
+@auth_blueprint.route('/auth', methods=["GET"])
+def index():
+    return """
+    /auth/login : LOGIN : user (string), password (string) - Логинимся<br>
+    /auth/status : GET - Статус текущего логина
+    """
+
+
+@auth_blueprint.route('/auth/login', methods=["LOGIN"])
 def login():
-    if request.args.get("user") == "admin" and request.args.get("password") == ADMIN["password"]:
+    if request.get_json().get("user") == ADMIN["login"] and request.get_json().get("password") == ADMIN["password"]:
         session['authorized'] = True
         response = make_response(jsonify({"status": "ok"}), 200)
-        response.set_cookie("user", "admin", path="/", domain="127.0.0.1")
         return response
     else:
         response = make_response(jsonify({"error": "wrong credentials"}), 400)
