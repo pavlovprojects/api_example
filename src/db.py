@@ -23,8 +23,11 @@ def execute_sql(sql, values=None):
     connect.close()
 
 
-def get_sql_result(sql):
+def get_sql_result(sql, values=None):
     connect = DBConnector().instance
-    result = connect.execute(sql)
+    if values:
+        result = connect.execute(sql, values)
+    else:
+        result = connect.execute(sql)
     header = [description[0] for description in result.description]
     return [dict(zip(header, row)) for row in result.fetchall()]

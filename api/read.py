@@ -7,8 +7,8 @@ read_blueprint = Blueprint('read', __name__)
 @read_blueprint.route('/read')
 def index():
     return """
-    <a href="/read/all">/read/all</a> Показть все данные<br>
-    /read/username Показть данные по имени пользователя username<br>
+    <a href="/read/all">/read/all</a> - Показть все данные в таблице<br>
+    /read/username - Показть данные по имени пользователя username<br>
     """
 
 
@@ -19,6 +19,6 @@ def all():
 
 
 @read_blueprint.route('/read/<username>')
-def user():
-    data = get_sql_result("SELECT * FROM users WHERE user = ;")
+def user(username):
+    data = get_sql_result("SELECT * FROM users WHERE name = ?;", (username,))
     return jsonify(data)

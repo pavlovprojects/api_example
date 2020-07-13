@@ -19,11 +19,13 @@ app.secret_key = "secret"
 
 
 @app.route('/')
+@app.route('/docs')
+@app.route('/doc')
 def index():
     return """
     <h2>This is testing example API</h2>
     Available routes:<br>
-    <a href="/info"></a>
+    <a href="/info">Инфоблок о запросах</a>
     <a href="/doc">Documentation</a> Документация<br>
     <a href="/create">Create</a> Создаение данных<br>
     <a href="/read">Read</a> Чтение данных<br>
