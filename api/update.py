@@ -19,7 +19,7 @@ def add():
             execute_sql("INSERT INTO users (name, surname, grade) VALUES (?, ? ,?)",
                         (data['name'], data['surname'], data['grade']))
         except Exception as e:
-            return jsonify({"status": "error", "description": str(e)})
-        return jsonify({"status": "ok", "data": data})
+            return make_response(jsonify({"status": "error", "description": str(e)}), 400)
+        return make_response(jsonify({"status": "ok", "data": data}), 201)
     else:
-        return make_response(jsonify({"error": "authorization required"}), 403)
+        return make_response(jsonify({"status": "error", "description": "authorization_required"}), 403)

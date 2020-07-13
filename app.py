@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, jsonify
+
 from api.read import read_blueprint
 from api.info import info_blueprint
 from api.create import create_blueprint
@@ -30,6 +31,11 @@ def index():
     <a href="/update">Update</a> Изменение и добавление данных<br>
     <a href="/auth">Auth</a> Авторизация<br>
     """
+
+
+@app.errorhandler(405)
+def page_not_found(e):
+    return jsonify({"status": "error", "description": "method_not_allowed"})
 
 
 if __name__ == "__main__":
