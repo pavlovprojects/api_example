@@ -7,8 +7,8 @@ auth_blueprint = Blueprint('auth', __name__)
 @auth_blueprint.route('/auth', methods=["GET"])
 def index():
     return """
-    /auth/login : LOGIN : user (string), password (string) - Логинимся<br>
-    /auth/status : GET - Статус текущего логина
+    /auth/login LOGIN [user:str, password:str]: login with user and password
+    /auth/status GET: Current login status
     """
 
 
