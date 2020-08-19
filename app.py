@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify
 
 from api.read import read_blueprint
@@ -41,4 +42,4 @@ def page_not_found(e):
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port="5000")
+    app.run(port=os.getenv("PORT", 5000))
