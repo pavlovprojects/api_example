@@ -8,7 +8,7 @@ auth_blueprint = Blueprint('auth', __name__)
 def index():
     return """
     /auth/login LOGIN [user:str, password:str]: login with user and password
-    /auth/status GET: Current login status
+    <a href="/auth/status">/auth/status</a> GET: current login status
     """
 
 
