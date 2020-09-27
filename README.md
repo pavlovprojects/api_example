@@ -1,2 +1,3 @@
 # api_example
-API example
+
+This is an API example for testing and demo purposes.
